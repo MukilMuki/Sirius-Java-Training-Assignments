@@ -1,165 +1,162 @@
-package day_1_modified;
+package day_1;
+
+import java.util.Scanner;
 
 public class Exercise8{
 	public static void main(String args[]) {
-		Circle c=new Circle();
-		Square s=new Square();
-		Triangle t=new Triangle();
-		Sphere sp=new Sphere();
-		Cuboid cb=new Cuboid();
-		System.out.println("Area of Circle:"+c.area(10));
-		System.out.println("Area of Square:"+s.area(10));
-		System.out.println("Area of Triangle:"+t.area(3,5));
-		System.out.println("Area of Sphere:"+sp.area(5)+"Volume of Sphere:"+sp.volume(10));
-		System.out.println("Area of Cuboid:"+cb.area(5,6,7)+"Volume of Cuboid:"+cb.volume(10,11,12));
+		Scanner scan = new Scanner(System.in);
+		Circle shapeCircle=new Circle();
+		Square shapeSquare=new Square();
+		Triangle shapeTriangle=new Triangle();
+		Sphere shapeSphere=new Sphere();
+		Cuboid shapeCuboid=new Cuboid();
+		System.out.println("Enter the radius of the circle");
+		int circleRadius=scan.nextInt();
+		System.out.println("Enter the side of the square");
+		int squareSide=scan.nextInt();
+		System.out.println("Enter the height and breadth of the triangle");
+		int triangleHeight=scan.nextInt();
+		int triangleBreadth=scan.nextInt();
+		System.out.println("Enter the radius of the sphere");
+		int sphereRadius=scan.nextInt();
+		System.out.println("Enter the length, breadth, height");
+		int cuboidLength=scan.nextInt();
+		int cuboidBreadth=scan.nextInt();
+		int cuboidHeight=scan.nextInt();
+		System.out.println("Area of Circle:"+shapeCircle.area(circleRadius));
+		System.out.println("Area of Square:"+shapeSquare.area(squareSide));
+		System.out.println("Area of Triangle:"+shapeTriangle.area(triangleHeight,triangleBreadth));
+		System.out.println("Area of Sphere:"+shapeSphere.area(sphereRadius)+"Volume of Sphere:"+shapeSphere.volume(sphereRadius));
+		System.out.println("Area of Cuboid:"+shapeCuboid.area(cuboidLength,cuboidBreadth,cuboidHeight)+"Volume of Cuboid:"+shapeCuboid.volume(cuboidLength,cuboidBreadth,cuboidHeight));
 	}
 }
 
-interface CalcArea{
+interface ShapeArea{
 	double area(double radius);
 	double area(double length,double breadth);
 	double area(double length, double breadth, double height);
-	static double pi=3.14;
+	final static double pi=3.14;
 }
 
-interface CalcVolume{
+interface ShapeVolume{
 	double volume(double radius);
 	double volume(double length,double breadth, double height);
 }
 
 
-class Circle implements CalcArea{
+class Circle implements ShapeArea{
 	
 		public double area(double radius) {
-		// TODO Auto-generated method stub
 			double result = 3.14*Math.pow(radius,2);
 		return result;
 		}
 	@Override
 		public double area(double length, double breadth) {
-		// TODO Auto-generated method stub
 		return 0;
 		}
 	@Override
 	public double area(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }
 
-class Square implements CalcArea{
+class Square implements ShapeArea{
 	
 	@Override
 	public double area(double radius) {
-		// TODO Auto-generated method stub
 		double result=radius*radius;
 		return result;
 	}
 
 	@Override
 	public double area(double length, double breadth) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double area(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 }
 
-class Triangle implements CalcArea{
+class Triangle implements ShapeArea{
 
 
 	@Override
 	public double area(double radius) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double area(double length, double breadth) {
-		// TODO Auto-generated method stub
 		double result=0.5*(breadth*length);
 		return result;
 	}
 
 	@Override
 	public double area(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 }
 
-class Sphere implements CalcVolume,CalcArea{
+class Sphere implements ShapeVolume,ShapeArea{
 
 	@Override
 	public double area(double radius) {
-		// TODO Auto-generated method stub
 		double result=6*Math.pow(radius, 2);
 		return result;
 	}
 
 	@Override
 	public double area(double length, double breadth) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double volume(double radius) {
-		// TODO Auto-generated method stub
 		double result=Math.pow(radius, 3);
 		return result;
 	}
 
 	@Override
 	public double volume(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double area(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 }
 
-class Cuboid implements CalcVolume, CalcArea{
+class Cuboid implements ShapeVolume, ShapeArea{
 
 	@Override
 	public double area(double radius) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double area(double length, double breadth) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
 	@Override
 	public double area(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		double result=2*((length*breadth) + (breadth*height) + (length*height));
 		return result;
 	}
 	
 	@Override
 	public double volume(double radius) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public double volume(double length, double breadth, double height) {
-		// TODO Auto-generated method stub
 		double result=length*breadth*height;
 		return result;
 	}

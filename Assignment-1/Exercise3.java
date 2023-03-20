@@ -1,4 +1,4 @@
-package day_1_modified;
+package day_1;
 
 public class Exercise3 {
 	public static void main(String args[]) {
