@@ -8,7 +8,7 @@ public class Exercise2{
 	
 	public void mth2() {
 		try {
-			new Exercise2();
+			int i=1/0; System.exit(0);
 			return;
 		}
 		catch(Exception e) {
