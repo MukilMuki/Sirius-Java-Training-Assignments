@@ -1,13 +1,16 @@
-package day_1_modified;
+package day_1;
 
 public class Exercise4 {
-	static int prim1;
-	static boolean prim2;
-	static double prim3;
-	static float prim4;
-	static long prim5;
-	static String prim6;
+	static byte defaultByteValue;
+	static short defaultShortValue;
+	static int defaultIntValue;
+	static long defaultLongValue;
+	static float defaultFloatValue;
+	static double defaultDoubleValue;
+	static boolean defaultBooleanValue;
+	static char defaultCharValue;
+	
 	public static void main(String args[]) {	
-	System.out.println(prim1+" "+prim2+" "+prim3+" "+prim4+" "+prim5+" "+prim6);
+		System.out.println(defaultByteValue+" "+defaultIntValue+" "+defaultBooleanValue+" "+defaultDoubleValue+" "+defaultFloatValue+" "+defaultLongValue+" "+defaultCharValue+" "+defaultShortValue);
 }
 }

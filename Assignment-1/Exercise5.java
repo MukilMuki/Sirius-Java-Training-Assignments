@@ -1,19 +1,19 @@
-package day_1_modified; 
+package day_1; 
 
 public class Exercise5{
-public static void main(String[] args) {
-	MySingleTon.createInstance();
+	public static void main(String[] args) {
+		SingleTonObjectCreation.createInstance();
 }
 }
-class MySingleTon{
-	private MySingleTon() {
+class SingleTonObjectCreation{
+	private SingleTonObjectCreation() {
 		System.out.println("singleton object created...");
 	}
-	private static MySingleTon obj;
-	synchronized public static MySingleTon createInstance() {
-		if(obj==null) {
-			obj=new MySingleTon();
+	private static SingleTonObjectCreation secureObject;
+	synchronized public static SingleTonObjectCreation createInstance() {
+		if(secureObject==null) {
+			secureObject=new SingleTonObjectCreation();
 		}
-		return obj;
+		return secureObject;
 	}
 }
