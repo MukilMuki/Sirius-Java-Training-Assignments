@@ -2,30 +2,30 @@ package day_4.behavioral;
 
 public class Command_Pattern {
 	public static void main(String[] args) {
-		TV tv=new TV();
-		SetTopBox setTopBox=new SetTopBox();
-		VGame vGame=new VGame();
-		SoundSystem soundSystem=new SoundSystem();
+		AlphaTeam alpha=new AlphaTeam();
+		BravoTeam bravo=new BravoTeam();
+		CharlieTeam charlie=new CharlieTeam();
+		DeltaTeam delta=new DeltaTeam();
 		
-		GenieRemote mygenie=new GenieRemote();
+		CommandRoom commandRoom=new CommandRoom();
 		
-		mygenie.setCommand(1, new NewsCommand(tv, setTopBox, soundSystem, vGame));
-		mygenie.setCommand(2, new SerialCommand(tv, setTopBox, soundSystem, vGame));
-		mygenie.setCommand(3, new VGameCommandArchery(tv, setTopBox, soundSystem, vGame));
-		mygenie.setCommand(4, new VGameCommandTT(tv, setTopBox, soundSystem, vGame));
+		commandRoom.setCommand(1, new PointA(alpha, bravo, charlie, delta));
+		commandRoom.setCommand(2, new PointB(alpha, bravo, charlie, delta));
+		commandRoom.setCommand(3, new PointC(alpha, bravo, charlie, delta));
+		commandRoom.setCommand(4, new PointD(alpha, bravo, charlie, delta));
 		
-		mygenie.executeCommand(1);
+		commandRoom.executeCommand(2);
 		
 	}
 }
-class GenieRemote{
+class CommandRoom{
 	Command c[]=new Command[5];
 	
-	public GenieRemote() {
+	public CommandRoom() {
 		for(int i=0;i<c.length;i++) {
 			c[i]=new Command() {				
 				@Override
-				public void execute() {
+				public void capture() {
 					System.out.println("I am dummy yet to be operational....");
 				}
 			};
@@ -33,113 +33,123 @@ class GenieRemote{
 	}
 	
 	public void executeCommand(int slot) {
-		c[slot].execute();
+		c[slot].capture();
 	}
 	public void setCommand(int slot,Command cc) {
 		c[slot]=cc;
 	}
 }
 abstract class Command{
-	TV tv;SetTopBox setTopBox;SoundSystem soundSystem;VGame vGame;
-	public abstract void execute();
+	AlphaTeam alpha;
+	BravoTeam bravo;
+	CharlieTeam charlie;
+	DeltaTeam delta;
+	public abstract void capture();
 }
-class NewsCommand extends Command{
+class PointA extends Command{
 	
-	public NewsCommand(TV tv,SetTopBox setTopBox,SoundSystem soundSystem,VGame vGame) {
-		this.tv=tv;
-		this.setTopBox=setTopBox;
-		this.soundSystem=soundSystem;
-		this.vGame=vGame;
+	public PointA(AlphaTeam alpha,BravoTeam bravo,CharlieTeam charlie, DeltaTeam delta) {
+		this.alpha=alpha;
+		this.bravo=bravo;
+		this.delta=delta;
+		this.charlie=charlie;
 	}
 	@Override
-	public void execute() {
-		System.out.println("news command initiated....");
-		tv.av1Mode();
-		setTopBox.newsChannel();
-		soundSystem.lowVolume();
-		System.out.println("news channel started....");
+	public void capture() {
+		System.out.println("Offensive command initiated....");
+		alpha.openFire();
+		bravo.clearBuildings();
+		delta.smokeCover();
+		System.out.println("Point Captured....");
 	}
 }
-class SerialCommand extends Command{
-	public SerialCommand(TV tv,SetTopBox setTopBox,SoundSystem soundSystem,VGame vGame) {
-		this.tv=tv;
-		this.setTopBox=setTopBox;
-		this.soundSystem=soundSystem;
-		this.vGame=vGame;
+class PointB extends Command{
+	public PointB(AlphaTeam alpha,BravoTeam bravo,CharlieTeam charlie, DeltaTeam delta) {
+		this.alpha=alpha;
+		this.bravo=bravo;
+		this.delta=delta;
+		this.charlie=charlie;
 	}
 	@Override
-	public void execute() {
-		System.out.println("serial command initiated....");
-		tv.av1Mode();
-		setTopBox.serialChannel();
-		soundSystem.highVolume();
-		System.out.println("serial channel started....");
+	public void capture() {
+		System.out.println("Covering and Securing Point B Buildings....");
+		alpha.coverFire();
+		bravo.secureBuildings();
+		charlie.mortarRefill();
+		System.out.println("Secured and Captured....");
 	}
 }
-class VGameCommandTT extends Command{
-	public VGameCommandTT(TV tv,SetTopBox setTopBox,SoundSystem soundSystem,VGame vGame) {
-		this.tv=tv;
-		this.setTopBox=setTopBox;
-		this.soundSystem=soundSystem;
-		this.vGame=vGame;
+
+class PointC extends Command{
+	public PointC(AlphaTeam alpha,BravoTeam bravo,CharlieTeam charlie, DeltaTeam delta) {
+		this.alpha=alpha;
+		this.bravo=bravo;
+		this.delta=delta;
+		this.charlie=charlie;
 	}
 	@Override
-	public void execute() {
-		System.out.println("vgame tt command initiated....");
-		tv.av2Mode();
-		vGame.ttGame();
-		soundSystem.lowVolume();
-		System.out.println("vgame tt game started....");
+	public void capture() {
+		System.out.println("Shelling the point with mortar and cover firing with smoke....");
+		alpha.coverFire();
+		charlie.mortarFire();;
+		delta.smokeCover();
+		System.out.println("Point captured with causalities....");
 	}
 }
-class VGameCommandArchery extends Command{
-	public VGameCommandArchery(TV tv,SetTopBox setTopBox,SoundSystem soundSystem,VGame vGame) {
-		this.tv=tv;
-		this.setTopBox=setTopBox;
-		this.soundSystem=soundSystem;
-		this.vGame=vGame;
+
+class PointD extends Command{
+	public PointD(AlphaTeam alpha,BravoTeam bravo,CharlieTeam charlie, DeltaTeam delta) {
+		this.alpha=alpha;
+		this.bravo=bravo;
+		this.delta=delta;
+		this.charlie=charlie;
 	}
 	@Override
-	public void execute() {
-		System.out.println("vgame archery command initiated....");
-		tv.av2Mode();
-		vGame.archeryGame();;
-		soundSystem.lowVolume();
-		System.out.println("vgame archery game started....");
+	public void capture() {
+		System.out.println("Attack started with low cavalry and called for airstrike....");
+		charlie.mortarRefill();
+		delta.airStrikes();
+		alpha.retreat();
+		System.out.println("Attack failed with high causalities....");
 	}
 }
-class TV{
-	public void tvOn() {
-		System.out.println("switch on tv...");
+
+class AlphaTeam{
+	public void openFire() {
+		System.out.println("Pick out targets with offensive push...");
 	}
-	public void av1Mode() {
-		System.out.println("av1 mode....");
+	public void retreat() {
+		System.out.println("Fall back moving back to the checkpoint....");
 	}
-	public void av2Mode() {
-		System.out.println("av2 mode.....");
-	}
-}
-class SoundSystem{
-	public void lowVolume() {
-		System.out.println("low volume...");
-	}
-	public void highVolume() {
-		System.out.println("high volume...");
+	public void coverFire() {
+		System.out.println("Coverfire while Bravo Team clears targets.....");
 	}
 }
-class VGame{
-	public void ttGame() {
-		System.out.println("tt game...");
+
+class BravoTeam{
+	public void clearBuildings() {
+		System.out.println("Flash Bang and clear out the buildings....");
 	}
-	public void archeryGame() {
-		System.out.println("archery game.....");
+	public void secureBuildings() {
+		System.out.println("Lockdown the building and clear all safe spots and create"
+				+ "defensive positions.....");
 	}
 }
-class SetTopBox{
-	public void newsChannel() {
-		System.out.println("news channel....");
+
+class CharlieTeam{
+	public void mortarFire() {
+		System.out.println("Concentrated shell fire on coordinates..");
 	}
-	public void serialChannel() {
-		System.out.println("serial channel.....");
+	public void mortarRefill() {
+		System.out.println("Refilling shells.....");
+	}
+}
+
+class DeltaTeam{
+	public void airStrikes() {
+		System.out.println("Apache strikes marked with laser...");
+	}
+	public void smokeCover() {
+		System.out.println("Cover with smoke for comrades to fall back...");
 	}
 }
