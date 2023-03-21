@@ -4,51 +4,48 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Exercise9 {
-	public static void main(String args[]){
-		int b = 0,c,i = 0,j=0;
-		int a[]=new int[10];
-		int sum=0;
+	public static void main(String args[]) {
+		int flag = 0;
+		String inputString;
+		int parsedInput;
+		int sum = 0;
 		System.out.println("Enter the marks of 10 students");
-		while(i<10) {
+		while (flag < 10) {
 			try {
-				Scanner scan= new Scanner(System.in);
-					a[i]=scan.nextInt();
-					if(a[i]<0) {
-						throw new NegativeValueException("Negative Values");
-					}
-					if(a[i]>100) {
-						throw new OutofRangeException("The Mark range should be inbetween 0-100");
-					}
-					System.out.println(i);
-				i++;
-			}
-			catch(NegativeValueException e) {
+				Scanner scan = new Scanner(System.in);
+				System.out.println("Enter the Mark of student no:" + (flag + 1));
+				inputString = scan.nextLine();
+				parsedInput = Integer.parseInt(inputString);
+				if (parsedInput < 0) {
+					throw new NegativeValueException("Negative Values");
+				}
+				if (parsedInput > 100) {
+					throw new OutofRangeException("The Mark range should be inbetween 0-100");
+				}
+				sum += parsedInput;
+				flag++;
+			} catch (NegativeValueException e) {
 				System.out.println(e.getMessage());
-			}
-			catch(OutofRangeException e) {
+			} catch (OutofRangeException e) {
 				System.out.println(e.getMessage());
-			}
-			catch(InputMismatchException e){
-				System.out.println("Enter Correct value");
+			} catch (NumberFormatException e) {
+				System.out.println("Please enter a proper value!");
 			}
 		}
-		for(int value:a)
-			sum+=value;
-		System.out.println(sum);
+		System.out.println("The average of marks of 10 Students is:" + sum / 10);
 	}
 }
 
-class NegativeValueException extends Exception{
-	
-	NegativeValueException(String message){
+class NegativeValueException extends Exception {
+
+	NegativeValueException(String message) {
 		super(message);
 	}
 }
 
-class OutofRangeException extends Exception{
-	
-	OutofRangeException(String message){
+class OutofRangeException extends Exception {
+
+	OutofRangeException(String message) {
 		super(message);
 	}
 }
-
