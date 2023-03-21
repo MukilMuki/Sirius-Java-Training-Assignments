@@ -16,7 +16,6 @@ public class Exercise7 {
 						System.out.println("hi");
 						
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
