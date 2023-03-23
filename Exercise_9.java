@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class Exercise_9 {
 	static int wordcount(String st) {
 		int count = 0;
-
 		char ch[] = new char[(st).length()];
 		for (int i = 0; i < (st).length(); i++) {
 			ch[i] = (st).charAt(i);
@@ -24,9 +23,9 @@ public class Exercise_9 {
 		Scanner scan = new Scanner(System.in);
 		File file = new File(
 				"/Users/mukilan/git/Sirius-Java-Training-Assignments/Java_Training_Assignments/src/day_7/iotestfile.txt");
-		BufferedReader br = new BufferedReader(new FileReader(file));
+		BufferedReader bufferReader = new BufferedReader(new FileReader(file));
 		String st;
-		while ((st = br.readLine()) != null)
+		while ((st = bufferReader.readLine()) != null)
 			System.out.println(wordcount(st));
 	}
 }

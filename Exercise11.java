@@ -12,6 +12,5 @@ public class Exercise11 {
 		String[] dir = file.list();	
 		for(int i=0;i<dir.length;i++)
 			System.out.println(dir[i]);
-
 	}
 }
