@@ -23,13 +23,12 @@ public class ConnectionPairsExample {
 			String[] coffees = { "Colombian", "French_Roast", "Espresso", "Colombian_Decaf", "French_Roast_Decaf" };
 			int len = coffees.length;
 			for (int i = 0; i < len; i++) {
-				updateSales.setString(2, coffees[i]);
 				updateSales.setInt(1, salesForWeek[i]);
+				updateSales.setString(2, coffees[i]);
 				updateSales.executeUpdate();
-				updateTotal.setString(2, coffees[i]);
 				updateTotal.setInt(1, salesForWeek[i]);
+				updateTotal.setString(2, coffees[i]);
 				updateTotal.executeUpdate();
-				con.commit();
 			}
 			updateSales.close();
 			updateTotal.close();
