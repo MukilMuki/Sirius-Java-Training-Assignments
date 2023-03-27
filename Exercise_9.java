@@ -21,8 +21,7 @@ public class Exercise_9 {
 
 	public static void main(String[] args) throws IOException {
 		Scanner scan = new Scanner(System.in);
-		File file = new File(
-				"/Users/mukilan/git/Sirius-Java-Training-Assignments/Java_Training_Assignments/src/day_7/iotestfile.txt");
+		File file = new File("src/day_7/iotestfile.txt");
 		BufferedReader bufferReader = new BufferedReader(new FileReader(file));
 		String st;
 		while ((st = bufferReader.readLine()) != null)

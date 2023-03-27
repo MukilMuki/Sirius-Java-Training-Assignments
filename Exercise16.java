@@ -13,20 +13,18 @@ public class Exercise16 {
 
 		Date date = new Date();
 		try {
-			FileInputStream fileInput = new FileInputStream(
-					"/Users/mukilan/git/Sirius-Java-Training-Assignments/Java_Training_Assignments/src/day_7/iotestfile.txt");
+			FileInputStream fileInput = new FileInputStream("src/day_7/iotestfile.txt");
 
-			FileOutputStream fileOut = new FileOutputStream(
-					"/Users/mukilan/git/Sirius-Java-Training-Assignments/Java_Training_Assignments/src/day_7/iotestfile.txt");
+			FileOutputStream fileOut = new FileOutputStream("src/day_7/iotestfile.txt");
 			ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
 			ObjectInputStream objectIn = new ObjectInputStream(fileInput);
 			objectOut.writeObject(date);
+			System.out.println("The Date Object  was succesfully written to a file");
 			System.out.println(objectIn.readObject());
 			objectOut.close();
-			System.out.println("The Object  was succesfully written to a file");
 
-		} catch (Exception ex) {
-			ex.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e);
 		}
 	}
 }
