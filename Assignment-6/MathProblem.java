@@ -111,13 +111,12 @@ class ZeroValueException extends Exception {
 public class MathProblem {
 
 	public static void main(String args[]) {
-		Scanner scan = new Scanner(System.in);
-		int speed;
-		int distance;
-		LocalTime localTime;
-		LocalDate localDate;
-		LocalDateTime dateTime;
-		try {
+		try (Scanner scan = new Scanner(System.in)) {
+			int speed;
+			int distance;
+			LocalTime localTime;
+			LocalDate localDate;
+			LocalDateTime dateTime;
 			System.out.println("Enter the speed of the vehicle");
 			speed = scan.nextInt();
 			if (speed < 0) {
@@ -145,7 +144,7 @@ public class MathProblem {
 		} catch (NegativeValueException e) {
 			System.out.println(e.getMessage());
 		} catch (InputMismatchException e) {
-			System.out.println("");
+			System.out.println(e.getMessage());
 		} catch (ArithmeticException e) {
 			System.out.println("The vehicle needs to be moving!");
 		} catch (ZeroValueException e) {
@@ -153,6 +152,5 @@ public class MathProblem {
 		} catch (DateTimeParseException e) {
 			System.out.println("Enter the date and time in a proper format!");
 		}
-		scan.close();
 	}
 }
