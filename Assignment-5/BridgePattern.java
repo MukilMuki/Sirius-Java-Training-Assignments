@@ -67,7 +67,7 @@ class Bike extends Vehicle {
  * workshop functionality to the class.
  */
 interface Workshop {
-	abstract public void work();
+	void work();
 }
 
 class Produce implements Workshop {

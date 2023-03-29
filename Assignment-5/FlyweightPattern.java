@@ -1,5 +1,6 @@
 package day_5;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -51,7 +52,7 @@ class DroneFactory {
  * Client that consumes the flyweight implementation while getting extrinsic
  * properties from user to use.
  */
-class droneStrike {
+class DroneStrike {
 	private Drone drone = DroneFactory.getDrone();
 	int currentLateral = 0;
 	int currentVertical = 0;
@@ -69,22 +70,25 @@ class droneStrike {
 
 public class FlyweightPattern {
 	public static void main(String args[]) {
-		Scanner scan = new Scanner(System.in);
-		int targetLateral, targetVertical, targetLongitude;
-		droneStrike controlRoom[] = { new droneStrike(), new droneStrike() };
-		int strikes = controlRoom.length;
-		while (strikes > 0) {
-			System.out.println("Enter the Lateral");
-			targetLateral = scan.nextInt();
-			System.out.println("Enter the Vertical");
-			targetVertical = scan.nextInt();
-			System.out.println("Enter the Longitude");
-			targetLongitude = scan.nextInt();
-			controlRoom[strikes - 1].navigation(targetLateral, targetVertical, targetLongitude);
-			strikes--;
-			System.out.println("Target Destroyed......");
-			scan.close();
+		try (Scanner scan = new Scanner(System.in)) {
+			int targetLateral, targetVertical, targetLongitude;
+			DroneStrike controlRoom[] = { new DroneStrike(), new DroneStrike() };
+			int strikes = controlRoom.length;
+			while (strikes > 0) {
+				System.out.println("Enter the Lateral");
+				targetLateral = scan.nextInt();
+				System.out.println("Enter the Vertical");
+				targetVertical = scan.nextInt();
+				System.out.println("Enter the Longitude");
+				targetLongitude = scan.nextInt();
+				controlRoom[strikes - 1].navigation(targetLateral, targetVertical, targetLongitude);
+				strikes--;
+				System.out.println("Target Destroyed......");
+			}
+		} catch (InputMismatchException e) {
+			System.out.println("Please enter an integer value!");
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-
 	}
 }
