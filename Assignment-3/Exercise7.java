@@ -6,21 +6,21 @@ import java.util.concurrent.Executors;
 
 public class Exercise7 {
 	public static void main(String args[]) {
-		ExecutorService es=Executors.newFixedThreadPool(2);
-		es.execute(()->{
-			for(int i=1;i<=100;i++) {
+		ExecutorService es = Executors.newFixedThreadPool(2);
+		es.execute(() -> {
+			for (int i = 1; i <= 100; i++) {
 				try {
 					Thread.sleep(1000);
 					System.out.println(i);
-					if(i%10==0)
+					if (i % 10 == 0)
 						System.out.println("hi");
-						
+
 				} catch (InterruptedException e) {
-					e.printStackTrace();
+					System.out.println(e);
 				}
 			}
-				
-	});
+
+		});
 		es.shutdown();
 	}
 }
