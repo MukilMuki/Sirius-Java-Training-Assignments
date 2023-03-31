@@ -7,23 +7,23 @@ class InventorySystem {
 
 	synchronized public void produce() {
 		notify();
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				System.out.println(e);
-			}
-		
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			System.out.println(e);
+		}
+
 		System.out.println("Producer has produced the product");
 
 	}
 
 	synchronized public void consume() {
 		notify();
-			try {
-				wait();
-			} catch (InterruptedException e) {
-				System.out.println(e);
-			}
+		try {
+			wait();
+		} catch (InterruptedException e) {
+			System.out.println(e);
+		}
 		System.out.println("Consumer has consumed the product");
 	}
 }
